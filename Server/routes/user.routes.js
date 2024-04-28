@@ -4,13 +4,15 @@ const router = express.Router();
 import {
     register,login,logout,getProfile
 } from "../controllers/user.controller.js"
+import isLoggedIn from "../middlewares/Auth.middleware.js";
+
 
 router.post('/register',register);
 router.post('/login',login);
 router.get('/logout',logout);
-router.get('/me',getProfile);
+router.get('/me',isLoggedIn,getProfile);
 
-module.exports = router;
+export default router
 
 
 
